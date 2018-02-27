@@ -20,6 +20,9 @@
   "bugs": {
     "url": "https://github.com/NextStepWebs/simplemde-markdown-editor/issues"
   },
+  "scripts": {
+    "gulp": "gulp"
+  },
   "dependencies": {
     "codemirror": "*",
     "codemirror-spell-checker": "*",

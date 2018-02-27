@@ -13,6 +13,9 @@
     "semi": [
       2,
       "always"
+    ],
+    "no-useless-escape":[
+      0
     ]
   },
   "env": {

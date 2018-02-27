@@ -110,6 +110,7 @@ function createIcon(options, enableTooltips, shortcuts) {
 
 	el.tabIndex = -1;
 	el.className = options.className;
+	el.id = options.name;
 	return el;
 }
 
@@ -117,6 +118,12 @@ function createSep() {
 	var el = document.createElement("i");
 	el.className = "separator";
 	el.innerHTML = "|";
+	return el;
+}
+
+function createSpan(id) {
+	var el = document.createElement("span");
+	el.id = id;
 	return el;
 }
 
@@ -641,6 +648,17 @@ function drawImage(editor) {
 			return false;
 		}
 	}
+	_replaceSelection(cm, stat.image, options.insertTexts.image, url);
+}
+
+/**
+ * Action for insert an img.
+ */
+function insertImageLink(editor, imgUrl) {
+	var url = imgUrl || "http://";
+	var cm = editor.codemirror;
+	var stat = getState(cm);
+	var options = editor.options;
 	_replaceSelection(cm, stat.image, options.insertTexts.image, url);
 }
 
@@ -1177,6 +1195,13 @@ var toolbarBuiltInButtons = {
 		title: "Insert Image",
 		default: true
 	},
+	"imageUpload": {
+		name: "imageUpload",
+		action: null,
+		className: "fa fa-cloud-upload",
+		title: "Upload Image",
+		default: true
+	},
 	"table": {
 		name: "table",
 		action: drawTable,
@@ -1237,12 +1262,22 @@ var toolbarBuiltInButtons = {
 		action: redo,
 		className: "fa fa-repeat no-disable",
 		title: "Redo"
-	}
+	},
+	"separator-6": {
+		name: "separator-6"
+	},
+	"saveToRemote": {
+		name: "saveToRemote",
+		action: null,
+		className: "fa fa-repeat fa-floppy-o",
+		title: "Save To Server",
+		default: "true"
+	},
 };
 
 var insertTexts = {
 	link: ["[", "](#url#)"],
-	image: ["![](", "#url#)"],
+	image: ["![", "](#url#)"],
 	table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
 	horizontalRule: ["", "\n\n-----\n\n"]
 };
@@ -1326,7 +1361,6 @@ function SimpleMDE(options) {
 			}
 		}
 	}
-
 
 	// Handle status bar
 	if(!options.hasOwnProperty("status")) {
@@ -1724,7 +1758,7 @@ SimpleMDE.prototype.createToolbar = function(items) {
 			bar.appendChild(el);
 		})(items[i]);
 	}
-
+	bar.appendChild(createSpan("infoSpan"));
 	self.toolbarElements = toolbarData;
 
 	var cm = this.codemirror;
@@ -2024,5 +2058,7 @@ SimpleMDE.prototype.toTextArea = function() {
 		this.clearAutosavedValue();
 	}
 };
-
+SimpleMDE.prototype.insertImageLink = function(url) {
+	insertImageLink(this, url);
+};
 module.exports = SimpleMDE;
