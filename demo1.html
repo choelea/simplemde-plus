@@ -4,50 +4,17 @@
 <head>
     <meta charset="utf-8" />
     <title>Simple example - Editor.md examples</title>
-    <base href="">
+    
     <link rel="stylesheet" href="debug/simplemde.css">
     <!-- use dist/simplemde.min.css for production -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://tech.jiu-shu.com/styles/raneto.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="custom.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="debug/simplemde.debug.js"></script>
     <!-- use dist/simplemde.min.js for production -->
     <script src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <style>
-        .modal.show .modal-dialog {
-            padding-top: 50px;
-        }
-        #upload {
-            padding: 10px 10px 0px 10px;
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 16px;
-            font-weight: bold;
-            color: #7f858a;
-        }
-
-        #upload a {
-            background-color: #007a96;
-            padding: 12px 26px;
-            color: #fff;
-            font-size: 14px;
-            border-radius: 2px;
-            cursor: pointer;
-            display: block;
-            /*margin-top: 12px;*/
-            line-height: 1;
-        }
-
-        #upload a:hover {
-            background-color: #0986a3;
-        }
-
-        #upload input {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -122,7 +89,7 @@ public class HomePageController {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body" id="modal-body">
-                    <form action="http://img/jiu-shu.com/images/uploadone" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <form action="http://img/yuyoucloud.com/images/uploadone" method="post" enctype="multipart/form-data" id="uploadForm">
                         <div id="upload">Click Browse And Select Your Image
                             <a>Browse</a>
                             <input type="file" name="image" id="fileToBeUpload" multiple="multiple" />
@@ -162,7 +129,7 @@ public class HomePageController {
                 $('#fileToBeUpload').click();
             });
             $("#fileToBeUpload").change(function () {
-                $.ajax('http://localhost:3000/images/uploadone', {
+                $.ajax('http://img.yuyoucloud.com/images/uploadone', {
                     method: 'POST',
                     contentType: false,
                     processData: false,
