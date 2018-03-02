@@ -21348,6 +21348,16 @@ var toolbarBuiltInButtons = {
 		className: "fa fa-repeat no-disable",
 		title: "Redo"
 	},
+	"separator-6": {
+		name: "separator-6"
+	},
+	"saveToRemote": {
+		name: "saveToRemote",
+		action: null,
+		className: "fa fa-repeat fa-floppy-o",
+		title: "Save To Server",
+		default: "true"
+	},
 };
 
 var insertTexts = {

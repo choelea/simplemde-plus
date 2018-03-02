@@ -369,7 +369,7 @@ span.CodeMirror-selectedtext { background: none; }
 .CodeMirror-fullscreen {
     background: #fff;
     position: fixed !important;
-    top: 80px;
+    top: 50px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -430,7 +430,7 @@ span.CodeMirror-selectedtext { background: none; }
     background: #fff;
     border-top: 1px solid #ddd;
     position: fixed;
-    top: 35px;
+    top: 0px;
     left: 0;
     opacity: 1;
     z-index: 9;
@@ -446,7 +446,7 @@ span.CodeMirror-selectedtext { background: none; }
     background: -ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
     background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
     position: fixed;
-    top: 35px;
+    top: 0px;
     left: 0;
     margin: 0;
     padding: 0;
@@ -462,7 +462,7 @@ span.CodeMirror-selectedtext { background: none; }
     background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
     position: fixed;
-    top: 35px;
+    top: 0px;
     right: 0;
     margin: 0;
     padding: 0;
@@ -586,7 +586,7 @@ span.CodeMirror-selectedtext { background: none; }
     position: fixed;
     bottom: 0;
     width: 50%;
-    top: 80px;
+    top: 50px;
     right: 0;
     background: #fafafa;
     z-index: 9;
