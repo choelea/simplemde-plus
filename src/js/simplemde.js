@@ -11,7 +11,7 @@ require("codemirror/addon/selection/mark-selection.js");
 require("codemirror/mode/gfm/gfm.js");
 require("codemirror/mode/xml/xml.js");
 var CodeMirrorSpellChecker = require("codemirror-spell-checker");
-var marked = require("marked");
+var marked = require("joe-marked");
 
 
 // Some variables
@@ -118,12 +118,6 @@ function createSep() {
 	var el = document.createElement("i");
 	el.className = "separator";
 	el.innerHTML = "|";
-	return el;
-}
-
-function createSpan(id) {
-	var el = document.createElement("span");
-	el.id = id;
 	return el;
 }
 
@@ -1263,16 +1257,6 @@ var toolbarBuiltInButtons = {
 		className: "fa fa-repeat no-disable",
 		title: "Redo"
 	},
-	"separator-6": {
-		name: "separator-6"
-	},
-	"saveToRemote": {
-		name: "saveToRemote",
-		action: null,
-		className: "fa fa-repeat fa-floppy-o",
-		title: "Save To Server",
-		default: "true"
-	},
 };
 
 var insertTexts = {
@@ -1372,7 +1356,7 @@ function SimpleMDE(options) {
 	if(!options.previewRender) {
 		options.previewRender = function(plainText) {
 			// Note: "this" refers to the options object
-			return this.parent.markdown(plainText);
+			return this.parent.markdown(plainText).html;
 		};
 	}
 
@@ -1543,6 +1527,7 @@ SimpleMDE.prototype.render = function(el) {
 	}
 	if(options.status !== false) {
 		this.gui.statusbar = this.createStatusbar();
+		this.gui.toolbar.appendChild(this.gui.statusbar);
 	}
 	if(options.autosave != undefined && options.autosave.enabled === true) {
 		this.autosave();
@@ -1758,7 +1743,6 @@ SimpleMDE.prototype.createToolbar = function(items) {
 			bar.appendChild(el);
 		})(items[i]);
 	}
-	bar.appendChild(createSpan("infoSpan"));
 	self.toolbarElements = toolbarData;
 
 	var cm = this.codemirror;
@@ -1854,7 +1838,7 @@ SimpleMDE.prototype.createStatusbar = function(status) {
 
 
 	// Create element for the status bar
-	var bar = document.createElement("div");
+	var bar = document.createElement("span");
 	bar.className = "editor-statusbar";
 
 

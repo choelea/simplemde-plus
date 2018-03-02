@@ -24,9 +24,9 @@
     "gulp": "gulp"
   },
   "dependencies": {
-    "codemirror": "*",
+    "codemirror": "^5.35.0",
     "codemirror-spell-checker": "*",
-    "marked": "*"
+    "joe-marked": "^0.4.2"
   },
   "devDependencies": {
     "browserify": "*",

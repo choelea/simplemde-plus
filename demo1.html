@@ -18,6 +18,9 @@
 </head>
 
 <body>
+	<div style="height:40px">
+		<Span> Hellow there</Span>
+	</div>
     <div>
         <textarea id="content">进一步去了解Spring Boot的实现原理
 # Look Under The Hood
@@ -105,9 +108,11 @@ public class HomePageController {
     <script>
         var simplemde = new SimpleMDE({
             element: document.getElementById("content"),
-            autofocus: true,
+			autofocus: true,
+			spellChecker: false,
             showIcons: ["table", "horizontal-rule", "strikethrough", "saveToRemote", "imageUpload"],
-            promptURLs: true,
+			promptURLs: true,
+			status: ["autosave"],
             autosave: {
                 enabled: true,
                 delay: 30000,
