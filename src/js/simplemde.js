@@ -11,7 +11,7 @@ require("codemirror/addon/selection/mark-selection.js");
 require("codemirror/mode/gfm/gfm.js");
 require("codemirror/mode/xml/xml.js");
 var CodeMirrorSpellChecker = require("codemirror-spell-checker");
-var marked = require("joe-marked");
+var marked = require("marked");
 
 
 // Some variables
@@ -1366,7 +1366,7 @@ function SimpleMDE(options) {
 	if(!options.previewRender) {
 		options.previewRender = function(plainText) {
 			// Note: "this" refers to the options object
-			return this.parent.markdown(plainText).html;
+			return this.parent.markdown(plainText);
 		};
 	}
 
@@ -1415,10 +1415,24 @@ function SimpleMDE(options) {
 }
 
 /**
+ * Strip meta text
+ * @param {*} str 
+ */
+function stripMeta(str) {
+	if(str.slice(0, 3) !== "---") return;
+
+	var matcher = /\n(\.{3}|-{3})/g;
+	var metaEnd = matcher.exec(str);
+
+	var mardownContent = metaEnd && [str.slice(0, metaEnd.index), str.slice(matcher.lastIndex)];
+	return mardownContent ? mardownContent[1] : str;
+}
+/**
  * Default markdown render.
  */
 SimpleMDE.prototype.markdown = function(text) {
 	if(marked) {
+		text = stripMeta(text);
 		// Initialize
 		var markedOptions = {};
 
