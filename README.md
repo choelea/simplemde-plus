@@ -1,13 +1,13 @@
-This is an extension of [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor).
+This is a markdown editor which is an extension of [SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor).
 
 A few features are added into simplemde-plus based on SimpleMDE:
 - Add 'id' attribute to toolbar icons (to easy to hook the action of icons on toolbar)
-- Add info `<span id="infoSpan"></span>` on toolbar which float right of the toolbar, mainly for usage of notifications etc.
+- Move status bar to toolbar and float right of the toolbar
 - Add 2 more icons to toolbar: 'Upload Image' and 'Save To Server' 
 - Expose one more function `insertImageLink(imageUrl)` so that user can implements their own 'Upload Image' Action, and then call this function to insert image
 - Add demo1.html to test.
 
-You can find a full example of usage of SimpleMDE at demo1.html. I suggest you install 'Web Server For Chrome' extension and choose folder of this repository to start the demo.
+You can find a example of usage of SimpleMDE at demo1.html. I suggest you install 'Web Server For Chrome' extension and choose folder of this repository to start the demo.
 
 > Just a few code changes to accomplish those enhancements and didn't change any previous behavior of SimpleMDE. Codes of SimpleMDE are well structured, but it's been there for years without any updated commits. So if any new feature needed, you can just implements it by yourself. This repository could be a start point.
 
