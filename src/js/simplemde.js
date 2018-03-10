@@ -1419,7 +1419,7 @@ function SimpleMDE(options) {
  * @param {*} str 
  */
 function stripMeta(str) {
-	if(str.slice(0, 3) !== "---") return;
+	if(str.slice(0, 3) !== "---") return str;
 
 	var matcher = /\n(\.{3}|-{3})/g;
 	var metaEnd = matcher.exec(str);
