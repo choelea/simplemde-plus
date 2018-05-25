@@ -648,12 +648,12 @@ function drawImage(editor) {
 /**
  * Action for insert an img.
  */
-function insertImageLink(editor, imgUrl) {
+function insertImageLink(editor, imgUrl, alt) {
 	var url = imgUrl || "http://";
 	var cm = editor.codemirror;
 	var stat = getState(cm);
 	var options = editor.options;
-	_replaceSelection(cm, stat.image, options.insertTexts.image, url);
+	_replaceSelection(cm, stat.image, options.insertTexts.image, url, alt);
 }
 
 /**
@@ -800,7 +800,7 @@ function togglePreview(editor) {
 		toggleSideBySide(editor);
 }
 
-function _replaceSelection(cm, active, startEnd, url) {
+function _replaceSelection(cm, active, startEnd, url, alt) {
 	if(/editor-preview-active/.test(cm.getWrapperElement().lastChild.className))
 		return;
 
@@ -812,6 +812,8 @@ function _replaceSelection(cm, active, startEnd, url) {
 	if(url) {
 		end = end.replace("#url#", url);
 	}
+	end = end.replace("#alt#", alt || "");
+
 	if(active) {
 		text = cm.getLine(startPoint.line);
 		start = text.slice(0, startPoint.ch);
@@ -1271,7 +1273,7 @@ var toolbarBuiltInButtons = {
 
 var insertTexts = {
 	link: ["[", "](#url#)"],
-	image: ["![", "](#url#)"],
+	image: ["![", "#alt#](#url#)"],
 	table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text     | Text     |\n\n"],
 	horizontalRule: ["", "\n\n-----\n\n"]
 };
@@ -2066,7 +2068,7 @@ SimpleMDE.prototype.toTextArea = function() {
 		this.clearAutosavedValue();
 	}
 };
-SimpleMDE.prototype.insertImageLink = function(url) {
-	insertImageLink(this, url);
+SimpleMDE.prototype.insertImageLink = function(url, alt) {
+	insertImageLink(this, url, alt);
 };
 module.exports = SimpleMDE;
